@@ -73,7 +73,7 @@ export const Portfolio = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
           <Reveal>
-            <h2 className="text-4xl md:text-7xl font-extrabold tracking-tighter leading-tight text-glow">
+            <h2 className="text-4xl md:text-7xl font-extrabold tracking-tighter leading-[0.9] text-glow">
               PROYECTOS <br />
               <span className="opacity-40">SELECCIONADOS.</span>
             </h2>
@@ -113,7 +113,7 @@ export const Portfolio = () => {
                     <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black/40 to-transparent z-10 pointer-events-none" />
 
                     <div className="absolute inset-x-0 bottom-0 p-10 bg-gradient-to-t from-black via-black/60 to-transparent translate-y-4 group-hover/item:translate-y-0 opacity-0 group-hover/item:opacity-100 transition-all duration-500 z-20">
-                      <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-accent mb-3">{project.category}</p>
+                      <p className="text-sm font-bold tracking-widest lowercase text-accent mb-3 font-mona">{project.category}</p>
                       <h3 className="text-2xl font-bold tracking-tight uppercase mb-6 leading-tight">{project.title}</h3>
                       <div className="flex items-center gap-4">
                          <div className="h-px w-10 bg-accent" />

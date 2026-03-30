@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@fontsource/mona-sans/index.css";
 
 @theme {
   --color-accent: #201aff;
@@ -19,6 +20,10 @@
 }
 
 @layer utilities {
+  .font-mona {
+    font-family: "Mona Sans", sans-serif;
+  }
+  
   .text-glow {
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   }

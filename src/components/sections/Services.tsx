@@ -19,7 +19,7 @@ export const Services = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
           <Reveal>
-            <h2 className="text-4xl md:text-7xl font-extrabold tracking-tighter leading-tight">
+            <h2 className="text-4xl md:text-7xl font-extrabold tracking-tighter leading-[0.9] text-glow">
               NUESTRAS <br />
               <span className="opacity-40">CAPACIDADES.</span>
             </h2>
@@ -48,7 +48,7 @@ export const Services = () => {
                   <h3 className="text-xl font-bold tracking-tight uppercase">{service.title}</h3>
                 </div>
                 
-                <p className="text-white/40 text-sm leading-relaxed group-hover:text-white/70 transition-colors">
+                <p className="text-white/40 text-sm leading-relaxed group-hover:text-white/70 transition-colors font-mona lowercase">
                   {service.description}
                 </p>
 
