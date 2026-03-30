@@ -21,7 +21,7 @@ export const Process = () => {
           {process.map((step, index) => (
             <div key={step.id} className="relative p-12 border border-white/10 group hover:border-white/30 transition-all duration-500">
               <Reveal delay={index * 0.2}>
-                <span className="text-6xl font-black text-accent/20 mb-8 block group-hover:text-accent group-hover:text-glow-accent transition-all duration-500">0{index + 1}</span>
+                <span className="text-6xl font-black text-accent/50 mb-8 block group-hover:text-accent transition-all duration-500">0{index + 1}</span>
                 <h3 className="text-2xl font-bold tracking-tight uppercase mb-6">{step.title}</h3>
                 <p className="text-white/50 text-sm leading-relaxed">
                   {step.description}

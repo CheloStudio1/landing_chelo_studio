@@ -1,75 +1,167 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { portfolio } from "../../data/mock";
 import { Reveal } from "../ui/Reveal";
 
 export const Portfolio = () => {
+  // Triple the data for infinite look
+  const loopedPortfolio = [...portfolio, ...portfolio, ...portfolio];
+  
+  const [currentIndex, setCurrentIndex] = useState(portfolio.length);
+  const [slidesToShow, setSlidesToShow] = useState(3);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  
+  const motionControls = useAnimation();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) setSlidesToShow(1);
+      else if (window.innerWidth < 1024) setSlidesToShow(2);
+      else setSlidesToShow(3);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const nextSlide = () => {
+    if (isTransitioning) return;
+    setCurrentIndex((prev) => prev + 1);
+  };
+
+  const prevSlide = () => {
+    if (isTransitioning) return;
+    setCurrentIndex((prev) => prev - 1);
+  };
+
+  // Seamless Jump Logic
+  const handleAnimationComplete = () => {
+    setIsTransitioning(false);
+    
+    // Jump if we go past the "real" middle set
+    if (currentIndex >= portfolio.length * 2) {
+      setCurrentIndex(portfolio.length);
+    } else if (currentIndex < portfolio.length) {
+      setCurrentIndex(portfolio.length + (portfolio.length - 1));
+    }
+  };
+
+  // Autoplay functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, currentIndex]);
+
   return (
-    <section id="portfolio" className="py-24 md:py-48 bg-black">
+    <section 
+      id="portfolio" 
+      className="py-24 md:py-48 bg-black overflow-hidden"
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => setIsAutoPlaying(true)}
+    >
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
           <Reveal>
-            <h2 className="text-4xl md:text-7xl font-extrabold tracking-tighter leading-tight">
+            <h2 className="text-4xl md:text-7xl font-extrabold tracking-tighter leading-tight text-glow">
               PROYECTOS <br />
               <span className="opacity-40">SELECCIONADOS.</span>
             </h2>
           </Reveal>
-          
-          <Reveal delay={0.3}>
-            <div className="flex gap-4">
-              <span className="text-[10px] font-bold tracking-widest uppercase py-2 px-4 border border-accent bg-accent/10 text-accent hover:bg-accent hover:text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(32,26,255,0.2)]">Todos</span>
-              <span className="text-[10px] font-bold tracking-widest uppercase py-2 px-4 opacity-40 hover:opacity-100 transition-all cursor-pointer">Video</span>
-              <span className="text-[10px] font-bold tracking-widest uppercase py-2 px-4 opacity-40 hover:opacity-100 transition-all cursor-pointer">Branding</span>
-            </div>
-          </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolio.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="relative aspect-[3/4] group overflow-hidden bg-white/5"
+        <div className="relative group">
+          <div className="relative overflow-visible py-4 -mx-4 px-4 h-full">
+            <motion.div 
+              className="flex gap-8"
+              animate={{ x: `calc(-${currentIndex * (100 / slidesToShow)}% - ${currentIndex * (8 / slidesToShow)}rem)` }}
+              transition={isTransitioning ? { duration: 3, ease: "linear" } : { duration: 0 }}
+              onAnimationStart={() => setIsTransitioning(true)}
+              onAnimationComplete={handleAnimationComplete}
             >
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-in-out"
-              />
-              
-              <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 to-transparent translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <p className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-60 mb-2">{project.category}</p>
-                <h3 className="text-xl font-bold tracking-tight uppercase">{project.title}</h3>
-                <div className="mt-6 flex items-center gap-4">
-                   <div className="h-px w-8 bg-accent" />
-                   <span className="text-[10px] font-bold tracking-widest uppercase group-hover:text-accent transition-colors">Ver Detalles</span>
-                </div>
-              </div>
+              {loopedPortfolio.map((project, index) => (
+                <div 
+                  key={`${project.id}-${index}`}
+                  className="flex-shrink-0"
+                  style={{ width: `calc(${100 / slidesToShow}% - ${(slidesToShow - 1) * 2 / slidesToShow}rem)` }}
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: (index % portfolio.length) * 0.1, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="relative aspect-[3/4] group/item overflow-hidden bg-white/5 border border-white/5"
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover grayscale group-hover/item:grayscale-0 group-hover/item:scale-110 transition-all duration-1000 ease-in-out"
+                    />
+                    
+                    <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black/40 to-transparent z-10 pointer-events-none" />
+                    <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black/40 to-transparent z-10 pointer-events-none" />
 
-              {/* Minimalist Overlay Detail */}
-              <div className="absolute top-6 right-6 w-8 h-8 border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                <span className="text-[10px] font-light">0{index + 1}</span>
-              </div>
+                    <div className="absolute inset-x-0 bottom-0 p-10 bg-gradient-to-t from-black via-black/60 to-transparent translate-y-4 group-hover/item:translate-y-0 opacity-0 group-hover/item:opacity-100 transition-all duration-500 z-20">
+                      <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-accent mb-3">{project.category}</p>
+                      <h3 className="text-2xl font-bold tracking-tight uppercase mb-6 leading-tight">{project.title}</h3>
+                      <div className="flex items-center gap-4">
+                         <div className="h-px w-10 bg-accent" />
+                         <span className="text-[10px] font-bold tracking-widest uppercase text-white/60 group-hover/item:text-accent transition-colors">Ver Detalles</span>
+                      </div>
+                    </div>
+
+                    <div className="absolute top-8 right-8 w-10 h-10 border border-white/10 flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-all duration-700 backdrop-blur-sm z-20">
+                      <span className="text-xs font-light">0{(index % portfolio.length) + 1}</span>
+                    </div>
+                  </motion.div>
+                </div>
+              ))}
             </motion.div>
-          ))}
+          </div>
+
+          <button 
+            onClick={prevSlide}
+            className="absolute top-1/2 -left-4 md:-left-8 -translate-y-1/2 z-30 flex items-center justify-center text-white/40 hover:text-white transition-all duration-500 opacity-0 group-hover:opacity-100 hover:scale-125"
+            aria-label="Anterior"
+          >
+            <ChevronLeft size={60} strokeWidth={0.5} />
+          </button>
+          
+          <button 
+            onClick={nextSlide}
+            className="absolute top-1/2 -right-4 md:-right-8 -translate-y-1/2 z-30 flex items-center justify-center text-white/40 hover:text-white transition-all duration-500 opacity-0 group-hover:opacity-100 hover:scale-125"
+            aria-label="Siguiente"
+          >
+            <ChevronRight size={60} strokeWidth={0.5} />
+          </button>
         </div>
 
-        <div className="mt-24 text-center">
-            <Reveal width="100%">
-               <a 
-                 href="#" 
-                 className="inline-block text-xs font-bold tracking-[0.4em] uppercase border-b border-white/20 pb-4 hover:border-white transition-colors"
-                >
-                    Explorar Archivo Completo
-                </a>
-            </Reveal>
+        <div className="mt-20 flex justify-center gap-4">
+             {portfolio.map((_, i) => {
+                const isActive = (currentIndex % portfolio.length) === i;
+                return (
+                  <button
+                      key={i}
+                      onClick={() => {
+                        setCurrentIndex(portfolio.length + i);
+                        setIsAutoPlaying(false);
+                      }}
+                      className={`h-1 transition-all duration-1000 ${isActive ? "w-16 bg-accent shadow-[0_0_15px_rgba(32,26,255,0.6)]" : "w-6 bg-white/10 hover:bg-white/30"}`}
+                      aria-label={`Ir a proyecto ${i + 1}`}
+                  />
+                )
+             })}
         </div>
       </div>
     </section>
