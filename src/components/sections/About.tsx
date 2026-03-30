@@ -36,15 +36,15 @@ export const About = () => {
             <Reveal delay={0.8}>
               <div className="flex gap-16">
                 <div>
-                  <h4 className="text-3xl font-bold tracking-tighter">100+</h4>
+                  <h4 className="text-3xl font-bold tracking-tighter text-accent text-glow-accent">100+</h4>
                   <p className="text-[10px] tracking-widest uppercase text-white/40">Proyectos</p>
                 </div>
                 <div>
-                  <h4 className="text-3xl font-bold tracking-tighter">5+</h4>
+                  <h4 className="text-3xl font-bold tracking-tighter text-accent text-glow-accent">5+</h4>
                   <p className="text-[10px] tracking-widest uppercase text-white/40">Años de Exp.</p>
                 </div>
                 <div>
-                  <h4 className="text-3xl font-bold tracking-tighter">100%</h4>
+                  <h4 className="text-3xl font-bold tracking-tighter text-accent text-glow-accent">100%</h4>
                   <p className="text-[10px] tracking-widest uppercase text-white/40">Excelencia</p>
                 </div>
               </div>

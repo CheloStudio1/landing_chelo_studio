@@ -20,7 +20,7 @@ export const Portfolio = () => {
           
           <Reveal delay={0.3}>
             <div className="flex gap-4">
-              <span className="text-[10px] font-bold tracking-widest uppercase py-2 px-4 border border-white/10 hover:bg-white hover:text-black transition-all cursor-pointer">Todos</span>
+              <span className="text-[10px] font-bold tracking-widest uppercase py-2 px-4 border border-accent bg-accent/10 text-accent hover:bg-accent hover:text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(32,26,255,0.2)]">Todos</span>
               <span className="text-[10px] font-bold tracking-widest uppercase py-2 px-4 opacity-40 hover:opacity-100 transition-all cursor-pointer">Video</span>
               <span className="text-[10px] font-bold tracking-widest uppercase py-2 px-4 opacity-40 hover:opacity-100 transition-all cursor-pointer">Branding</span>
             </div>
@@ -48,8 +48,8 @@ export const Portfolio = () => {
                 <p className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-60 mb-2">{project.category}</p>
                 <h3 className="text-xl font-bold tracking-tight uppercase">{project.title}</h3>
                 <div className="mt-6 flex items-center gap-4">
-                   <div className="h-px w-8 bg-white" />
-                   <span className="text-[10px] font-bold tracking-widest uppercase">Ver Detalles</span>
+                   <div className="h-px w-8 bg-accent" />
+                   <span className="text-[10px] font-bold tracking-widest uppercase group-hover:text-accent transition-colors">Ver Detalles</span>
                 </div>
               </div>
 

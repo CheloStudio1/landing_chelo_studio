@@ -42,7 +42,7 @@ export const Services = () => {
                 className="bg-black p-12 space-y-8 min-h-[400px] flex flex-col justify-between group transition-colors"
               >
                 <div className="space-y-6">
-                  <div className="w-12 h-12 flex items-center justify-center border border-white/10 group-hover:bg-white group-hover:text-black transition-all duration-500">
+                  <div className="w-12 h-12 flex items-center justify-center border border-white/10 group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_0_20px_rgba(32,26,255,0.4)] transition-all duration-500">
                     <Icon size={24} strokeWidth={1} />
                   </div>
                   <h3 className="text-xl font-bold tracking-tight uppercase">{service.title}</h3>
@@ -53,8 +53,8 @@ export const Services = () => {
                 </p>
 
                 <div className="pt-8 flex items-center gap-2 group-hover:gap-4 transition-all duration-500 opacity-20 group-hover:opacity-100">
-                  <span className="text-[10px] font-bold tracking-[0.3em] uppercase">Saber más</span>
-                  <div className="h-[1px] w-8 bg-white" />
+                  <span className="text-[10px] font-bold tracking-[0.3em] uppercase group-hover:text-accent transition-colors">Saber más</span>
+                  <div className="h-[1px] w-8 bg-accent" />
                 </div>
               </motion.div>
             );

@@ -21,16 +21,16 @@ export const Process = () => {
           {process.map((step, index) => (
             <div key={step.id} className="relative p-12 border border-white/10 group hover:border-white/30 transition-all duration-500">
               <Reveal delay={index * 0.2}>
-                <span className="text-6xl font-black text-white/40 mb-8 block group-hover:text-white/70 transition-colors">0{index + 1}</span>
+                <span className="text-6xl font-black text-accent/20 mb-8 block group-hover:text-accent group-hover:text-glow-accent transition-all duration-500">0{index + 1}</span>
                 <h3 className="text-2xl font-bold tracking-tight uppercase mb-6">{step.title}</h3>
                 <p className="text-white/50 text-sm leading-relaxed">
                   {step.description}
                 </p>
               </Reveal>
               
-              {/* Decorative line */}
-              <div className="absolute top-0 right-0 w-12 h-[1px] bg-white/20" />
-              <div className="absolute top-0 right-0 w-[1px] h-12 bg-white/20" />
+              {/* Decorative lines */}
+              <div className="absolute top-0 right-0 w-12 h-[1px] bg-accent/20 group-hover:bg-accent group-hover:w-16 transition-all duration-500" />
+              <div className="absolute top-0 right-0 w-[1px] h-12 bg-accent/20 group-hover:bg-accent group-hover:h-16 transition-all duration-500" />
             </div>
           ))}
         </div>

@@ -61,7 +61,7 @@ export const Navbar = () => {
             href="#contact"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="px-6 py-2 bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-white/90 transition-colors"
+            className="px-6 py-2 bg-accent text-white text-xs font-bold tracking-widest uppercase hover:bg-accent-hover transition-all shadow-[0_0_20px_rgba(32,26,255,0.3)] hover:shadow-[0_0_30px_rgba(32,26,255,0.5)]"
           >
             Hablemos
           </motion.a>

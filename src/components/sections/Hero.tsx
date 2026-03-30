@@ -7,16 +7,18 @@ import { Reveal } from "../ui/Reveal";
 export const Hero = () => {
   return (
     <section id="hero" className="relative h-screen bg-black flex items-center justify-center overflow-hidden">
-      {/* Background visual detail */}
-      <div className="absolute inset-0 z-0 opacity-20 transition-opacity">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white rounded-full blur-[160px] opacity-20" />
+      {/* Background atmospheric details */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-glow-white opacity-20" />
+        <div className="absolute bottom-1/4 right-1/4 w-[800px] h-[800px] bg-glow-white opacity-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[180px]" />
       </div>
 
       <div className="container mx-auto px-6 z-10 text-center">
         <Reveal width="100%">
-          <h1 className="text-5xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-none mb-8">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-none mb-8 text-glow">
             REDEFINIENDO EL <br />
-            <span className="text-white/40">ESTILO VISUAL.</span>
+            <span className="text-accent text-glow-accent">ESTILO VISUAL.</span>
           </h1>
         </Reveal>
 
@@ -30,13 +32,13 @@ export const Hero = () => {
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <a
               href="#contact"
-              className="px-8 py-4 bg-white text-black text-sm font-bold tracking-widest uppercase transition-transform hover:scale-105"
+              className="px-10 py-5 bg-accent text-white text-sm font-bold tracking-widest uppercase transition-all hover:bg-accent-hover hover:scale-105 shadow-[0_0_30px_rgba(32,26,255,0.4)] hover:shadow-[0_0_50px_rgba(32,26,255,0.6)]"
             >
               TRABAJEMOS JUNTOS
             </a>
             <a
               href="#portfolio"
-              className="px-8 py-4 border border-white/20 text-white text-sm font-bold tracking-widest uppercase hover:bg-white/10 transition-all"
+              className="px-10 py-5 border border-white/20 text-white text-sm font-bold tracking-widest uppercase hover:bg-white/5 transition-all backdrop-blur-sm"
             >
               VER PORTAFOLIO
             </a>
@@ -51,8 +53,8 @@ export const Hero = () => {
         transition={{ delay: 1.5, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
       >
-        <div className="w-px h-16 bg-gradient-to-b from-transparent to-white/40 animate-pulse" />
-        <span className="text-[10px] tracking-[0.3em] uppercase opacity-30">SCROLL</span>
+        <div className="w-px h-16 bg-gradient-to-b from-transparent to-accent/60 animate-pulse" />
+        <span className="text-[10px] tracking-[0.3em] uppercase opacity-40 text-accent font-bold">SCROLL</span>
       </motion.div>
     </section>
   );
