@@ -85,7 +85,7 @@ export const Portfolio = () => {
             <motion.div 
               className="flex gap-8"
               animate={{ x: `calc(-${currentIndex * (100 / slidesToShow)}% - ${currentIndex * (8 / slidesToShow)}rem)` }}
-              transition={isTransitioning ? { duration: 3, ease: "linear" } : { duration: 0 }}
+              transition={isTransitioning ? { duration: 1.5, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }}
               onAnimationStart={() => setIsTransitioning(true)}
               onAnimationComplete={handleAnimationComplete}
             >
@@ -115,10 +115,6 @@ export const Portfolio = () => {
                     <div className="absolute inset-x-0 bottom-0 p-10 bg-gradient-to-t from-black via-black/60 to-transparent translate-y-4 group-hover/item:translate-y-0 opacity-0 group-hover/item:opacity-100 transition-all duration-500 z-20">
                       <p className="text-sm font-bold tracking-widest lowercase text-accent mb-3 font-mona">{project.category}</p>
                       <h3 className="text-2xl font-bold tracking-tight uppercase mb-6 leading-tight">{project.title}</h3>
-                      <div className="flex items-center gap-4">
-                         <div className="h-px w-10 bg-accent" />
-                         <span className="text-[10px] font-bold tracking-widest uppercase text-white/60 group-hover/item:text-accent transition-colors">Ver Detalles</span>
-                      </div>
                     </div>
 
                     <div className="absolute top-8 right-8 w-10 h-10 border border-white/10 flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-all duration-700 backdrop-blur-sm z-20">
@@ -129,39 +125,48 @@ export const Portfolio = () => {
               ))}
             </motion.div>
           </div>
-
-          <button 
-            onClick={prevSlide}
-            className="absolute top-1/2 -left-4 md:-left-8 -translate-y-1/2 z-30 flex items-center justify-center text-white/40 hover:text-white transition-all duration-500 opacity-0 group-hover:opacity-100 hover:scale-125"
-            aria-label="Anterior"
-          >
-            <ChevronLeft size={60} strokeWidth={0.5} />
-          </button>
-          
-          <button 
-            onClick={nextSlide}
-            className="absolute top-1/2 -right-4 md:-right-8 -translate-y-1/2 z-30 flex items-center justify-center text-white/40 hover:text-white transition-all duration-500 opacity-0 group-hover:opacity-100 hover:scale-125"
-            aria-label="Siguiente"
-          >
-            <ChevronRight size={60} strokeWidth={0.5} />
-          </button>
         </div>
 
-        <div className="mt-20 flex justify-center gap-4">
-             {portfolio.map((_, i) => {
-                const isActive = (currentIndex % portfolio.length) === i;
-                return (
-                  <button
-                      key={i}
-                      onClick={() => {
-                        setCurrentIndex(portfolio.length + i);
-                        setIsAutoPlaying(false);
-                      }}
-                      className={`h-1 transition-all duration-1000 ${isActive ? "w-16 bg-accent shadow-[0_0_15px_rgba(32,26,255,0.6)]" : "w-6 bg-white/10 hover:bg-white/30"}`}
-                      aria-label={`Ir a proyecto ${i + 1}`}
-                  />
-                )
-             })}
+        <div className="mt-12 flex flex-col items-center gap-12">
+          {/* Custom Controls Row */}
+          <div className="flex items-center gap-12">
+            <button 
+              onClick={prevSlide}
+              className="flex items-center justify-center text-white/50 hover:text-accent transition-all duration-500 hover:scale-125 group/btn"
+              aria-label="Anterior"
+            >
+              <div className="p-4 border border-white/10 rounded-full group-hover/btn:border-accent/50 transition-colors">
+                <ChevronLeft size={32} strokeWidth={1} />
+              </div>
+            </button>
+
+            <div className="flex justify-center gap-4">
+              {portfolio.map((_, i) => {
+                  const isActive = (currentIndex % portfolio.length) === i;
+                  return (
+                    <button
+                        key={i}
+                        onClick={() => {
+                          setCurrentIndex(portfolio.length + i);
+                          setIsAutoPlaying(false);
+                        }}
+                        className={`h-1 transition-all duration-1000 ${isActive ? "w-16 bg-accent shadow-[0_0_15px_rgba(32,26,255,0.6)]" : "w-6 bg-white/10 hover:bg-white/30"}`}
+                        aria-label={`Ir a proyecto ${i + 1}`}
+                    />
+                  )
+              })}
+            </div>
+
+            <button 
+              onClick={nextSlide}
+              className="flex items-center justify-center text-white/50 hover:text-accent transition-all duration-500 hover:scale-125 group/btn"
+              aria-label="Siguiente"
+            >
+              <div className="p-4 border border-white/10 rounded-full group-hover/btn:border-accent/50 transition-colors">
+                <ChevronRight size={32} strokeWidth={1} />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </section>

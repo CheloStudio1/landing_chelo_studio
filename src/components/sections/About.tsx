@@ -33,10 +33,10 @@ export const About = () => {
 
             <Reveal delay={0.6} width="100%">
               <div className="space-y-8 text-center">
-                <p className="text-white/40 leading-relaxed text-xs md:text-sm text-center font-mona lowercase max-w-2xl mx-auto">
+                <p className="text-white/40 leading-relaxed text-sm md:text-lg text-center font-mona lowercase max-w-2xl mx-auto">
                   somos un estudio creativo boutique con base en el minimalismo y la elegancia. nos especializamos en elevar marcas a través de una dirección creativa impecable y una ejecución técnica de primer nivel.
                 </p>
-                <p className="text-white/40 leading-relaxed text-xs md:text-sm text-center font-mona lowercase max-w-2xl mx-auto">
+                <p className="text-white/40 leading-relaxed text-sm md:text-lg text-center font-mona lowercase max-w-2xl mx-auto">
                   cada proyecto es una oportunidad para desafiar los límites de la creatividad visual, manteniendo siempre una estética limpia y sofisticada que es el sello distintivo de <span className="font-bold text-white/60">chelo studio</span>.
                 </p>
               </div>
