@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: "CheloStudio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-black.png",
         width: 1024,
         height: 1024,
         alt: "Chelo Studio Logo",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CheloStudio",
     description: "Elevando marcas a través de la excelencia cinematográfica.",
-    images: ["/og-image.png"],
+    images: ["/og-black.png"],
   },
 };
 
