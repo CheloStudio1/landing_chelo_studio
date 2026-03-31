@@ -7,8 +7,30 @@ import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 const inter = Inter({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
-  title: "CheloStudio",
-  description: "Estudio creativo enfocado en producción audiovisual, branding y contenido digital.",
+  title: "CheloStudio | Dirección Creativa & Producción Audiovisual",
+  description: "Estudio creativo boutique especializado en elevar marcas a través de una dirección creativa impecable y contenido visual sofisticado.",
+  openGraph: {
+    title: "CheloStudio",
+    description: "Dirección Creativa, Producción Audiovisual y Contenido Digital de alto impacto.",
+    url: "https://chelostudio.com", // Assuming this is the domain
+    siteName: "CheloStudio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "CheloStudio Logo",
+      },
+    ],
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CheloStudio",
+    description: "Elevando marcas a través de la excelencia cinematográfica.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
