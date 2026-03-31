@@ -32,7 +32,7 @@ export const Navbar = () => {
         <motion.div
            initial={{ opacity: 0, x: -20 }}
            animate={{ opacity: 1, x: 0 }}
-           className="relative h-10 w-40"
+           className="relative h-16 w-56 md:h-24 md:w-80"
         >
           <Image
             src="/logo.png"
