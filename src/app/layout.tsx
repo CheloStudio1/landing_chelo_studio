@@ -9,10 +9,11 @@ const inter = Inter({ subsets: ["latin"], weight: ["300", "400", "500", "600", "
 export const metadata: Metadata = {
   title: "CheloStudio | Dirección Creativa & Producción Audiovisual",
   description: "Estudio creativo boutique especializado en elevar marcas a través de una dirección creativa impecable y contenido visual sofisticado.",
+  metadataBase: new URL("https://www.chelostudio.com"),
   openGraph: {
     title: "CheloStudio",
     description: "Dirección Creativa, Producción Audiovisual y Contenido Digital de alto impacto.",
-    url: "https://chelostudio.com", // Assuming this is the domain
+    url: "https://www.chelostudio.com",
     siteName: "CheloStudio",
     images: [
       {
