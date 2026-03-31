@@ -32,11 +32,13 @@ export const Portfolio = () => {
 
   const nextSlide = () => {
     if (isTransitioning) return;
+    setIsTransitioning(true);
     setCurrentIndex((prev) => prev + 1);
   };
 
   const prevSlide = () => {
     if (isTransitioning) return;
+    setIsTransitioning(true);
     setCurrentIndex((prev) => prev - 1);
   };
 
@@ -84,9 +86,8 @@ export const Portfolio = () => {
           <div className="relative overflow-visible py-4 -mx-4 px-4 h-full">
             <motion.div 
               className="flex gap-8"
-              animate={{ x: `calc(-${currentIndex * (100 / slidesToShow)}% - ${currentIndex * (8 / slidesToShow)}rem)` }}
-              transition={isTransitioning ? { duration: 1.5, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }}
-              onAnimationStart={() => setIsTransitioning(true)}
+              animate={{ x: `calc(-${currentIndex * (100 / slidesToShow)}% - ${currentIndex * (2 / slidesToShow)}rem)` }}
+              transition={isTransitioning ? { duration: 1.2, ease: [0.65, 0, 0.35, 1] } : { duration: 0 }}
               onAnimationComplete={handleAnimationComplete}
             >
               {loopedPortfolio.map((project, index) => (
@@ -147,6 +148,8 @@ export const Portfolio = () => {
                     <button
                         key={i}
                         onClick={() => {
+                          if (isTransitioning) return;
+                          setIsTransitioning(true);
                           setCurrentIndex(portfolio.length + i);
                           setIsAutoPlaying(false);
                         }}
