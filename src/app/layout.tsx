@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   description: "Estudio creativo boutique especializado en elevar marcas a través de una dirección creativa impecable y contenido visual sofisticado.",
   metadataBase: new URL("https://www.chelostudio.com"),
   openGraph: {
-    title: "CheloStudio",
-    description: "Dirección Creativa, Producción Audiovisual y Contenido Digital de alto impacto.",
+    title: "CheloStudio | Dirección Creativa",
+    description: "Producción Audiovisual y Contenido Digital de alto impacto. Elevando marcas a través de la excelencia cinematográfica.",
     url: "https://www.chelostudio.com",
     siteName: "CheloStudio",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://www.chelostudio.com/og-v5.png",
         width: 1200,
         height: 630,
         alt: "Chelo Std Logo",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CheloStudio",
     description: "Elevando marcas a través de la excelencia cinematográfica.",
-    images: ["/og-image.png"],
+    images: ["https://www.chelostudio.com/og-v5.png"],
   },
 };
 
