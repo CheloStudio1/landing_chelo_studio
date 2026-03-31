@@ -82,7 +82,7 @@ export const Portfolio = () => {
           </Reveal>
         </div>
 
-        <div className="relative group">
+        <div className="relative">
           <div className="relative overflow-visible py-4 -mx-4 px-4 h-full">
             <motion.div 
               className="flex gap-8"
@@ -90,40 +90,54 @@ export const Portfolio = () => {
               transition={isTransitioning ? { duration: 1.2, ease: [0.65, 0, 0.35, 1] } : { duration: 0 }}
               onAnimationComplete={handleAnimationComplete}
             >
-              {loopedPortfolio.map((project, index) => (
-                <div 
-                  key={`${project.id}-${index}`}
-                  className="flex-shrink-0"
-                  style={{ width: `calc(${100 / slidesToShow}% - ${(slidesToShow - 1) * 2 / slidesToShow}rem)` }}
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: (index % portfolio.length) * 0.1, duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="relative aspect-[3/4] group/item overflow-hidden bg-white/5 border border-white/5"
+              {loopedPortfolio.map((project, index) => {
+                const isCenter = index === currentIndex + Math.floor(slidesToShow / 2);
+                
+                return (
+                  <div 
+                    key={`${project.id}-${index}`}
+                    className="flex-shrink-0"
+                    style={{ width: `calc(${100 / slidesToShow}% - ${(slidesToShow - 1) * 2 / slidesToShow}rem)` }}
                   >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover grayscale group-hover/item:grayscale-0 group-hover/item:scale-110 transition-all duration-1000 ease-in-out"
-                    />
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      animate={{ 
+                        scale: isCenter ? 1.05 : 0.95,
+                        opacity: isCenter ? 1 : 0.4,
+                      }}
+                      transition={{ 
+                        scale: { duration: 0.8, ease: "easeOut" },
+                        opacity: { duration: 0.8, ease: "easeOut" },
+                        default: { delay: (index % portfolio.length) * 0.1, duration: 0.6 } 
+                      }}
+                      viewport={{ once: true }}
+                      className="relative aspect-[3/4] group/item overflow-hidden bg-white/5 border border-white/5 transition-all duration-700"
+                    >
+                      {/* Inner Item Gradient Overlay (only for non-focus items) */}
+                      {!isCenter && (
+                        <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
+                      )}
+                      
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className={`object-cover group-hover/item:grayscale-0 group-hover/item:scale-110 transition-all duration-1000 ease-in-out ${isCenter ? "grayscale-0" : "grayscale"}`}
+                      />
                     
-                    <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black/40 to-transparent z-10 pointer-events-none" />
-                    <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black/40 to-transparent z-10 pointer-events-none" />
+                      <div className="absolute inset-x-0 bottom-0 p-10 bg-gradient-to-t from-black via-black/60 to-transparent translate-y-4 group-hover/item:translate-y-0 opacity-0 group-hover/item:opacity-100 transition-all duration-500 z-20">
+                        <p className="text-sm font-bold tracking-widest lowercase text-accent mb-3 font-mona">{project.category}</p>
+                        <h3 className="text-2xl font-bold tracking-tight uppercase mb-6 leading-tight">{project.title}</h3>
+                      </div>
 
-                    <div className="absolute inset-x-0 bottom-0 p-10 bg-gradient-to-t from-black via-black/60 to-transparent translate-y-4 group-hover/item:translate-y-0 opacity-0 group-hover/item:opacity-100 transition-all duration-500 z-20">
-                      <p className="text-sm font-bold tracking-widest lowercase text-accent mb-3 font-mona">{project.category}</p>
-                      <h3 className="text-2xl font-bold tracking-tight uppercase mb-6 leading-tight">{project.title}</h3>
-                    </div>
-
-                    <div className="absolute top-8 right-8 w-10 h-10 border border-white/10 flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-all duration-700 backdrop-blur-sm z-20">
-                      <span className="text-xs font-light">0{(index % portfolio.length) + 1}</span>
-                    </div>
-                  </motion.div>
-                </div>
-              ))}
+                      <div className="absolute top-8 right-8 w-10 h-10 border border-white/10 flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-all duration-700 backdrop-blur-sm z-20">
+                        <span className="text-xs font-light">0{(index % portfolio.length) + 1}</span>
+                      </div>
+                    </motion.div>
+                  </div>
+                );
+              })}
             </motion.div>
           </div>
         </div>
