@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     siteName: "CheloStudio",
     images: [
       {
-        url: "https://www.chelostudio.com/og-v5.png",
-        width: 1200,
-        height: 630,
-        alt: "Chelo Std Logo",
+        url: "https://www.chelostudio.com/og-v7.png",
+        width: 1080,
+        height: 1080,
+        alt: "Chelo Studio Logo",
       },
     ],
     locale: "es_ES",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CheloStudio",
     description: "Elevando marcas a través de la excelencia cinematográfica.",
-    images: ["https://www.chelostudio.com/og-v5.png"],
+    images: ["https://www.chelostudio.com/og-v7.png"],
   },
 };
 
