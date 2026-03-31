@@ -8,9 +8,9 @@ export const Process = () => {
   return (
     <section id="process" className="py-24 md:py-48 bg-black/50">
       <div className="container mx-auto px-6">
-        <div className="mb-24">
+        <div className="mb-16 md:mb-24 flex justify-center md:justify-start">
           <Reveal>
-            <h2 className="text-4xl md:text-7xl font-extrabold tracking-tighter leading-tight">
+            <h2 className="text-4xl md:text-7xl font-extrabold tracking-tighter leading-tight text-center md:text-left">
               NUESTRO <br />
               <span className="opacity-40">PROCESO.</span>
             </h2>
@@ -19,7 +19,7 @@ export const Process = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {process.map((step, index) => (
-            <div key={step.id} className="relative p-12 border border-white/10 group hover:border-white/30 transition-all duration-500">
+            <div key={step.id} className="relative p-8 md:p-12 border border-white/10 group hover:border-white/30 transition-all duration-500 flex flex-col items-center text-center md:items-start md:text-left">
               <Reveal delay={index * 0.2}>
                 <span className="text-6xl font-black text-accent/50 mb-8 block group-hover:text-accent transition-all duration-500">0{index + 1}</span>
                 <h3 className="text-2xl font-bold tracking-tight uppercase mb-6">{step.title}</h3>

@@ -17,7 +17,7 @@ export const Services = () => {
   return (
     <section id="services" className="py-24 md:py-48 bg-black/50 overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
+        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center md:items-end mb-16 md:mb-24 gap-8 md:gap-12 text-center md:text-left">
           <Reveal>
             <h2 className="text-4xl md:text-7xl font-extrabold tracking-tighter leading-[0.9] text-glow">
               NUESTRAS <br />
@@ -39,9 +39,9 @@ export const Services = () => {
               <motion.div
                 key={service.id}
                 whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.03)" }}
-                className="bg-black p-12 space-y-8 min-h-[400px] flex flex-col justify-between group transition-colors"
+                className="bg-black p-8 md:p-12 space-y-6 md:space-y-8 min-h-[350px] md:min-h-[400px] flex flex-col justify-between items-center text-center md:items-start md:text-left group transition-colors"
               >
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6 flex flex-col items-center md:items-start">
                   <div className="w-12 h-12 flex items-center justify-center border border-white/10 group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_0_20px_rgba(32,26,255,0.4)] transition-all duration-500">
                     <Icon size={24} strokeWidth={1} />
                   </div>
@@ -52,7 +52,7 @@ export const Services = () => {
                   {service.description}
                 </p>
 
-                <div className="pt-8 flex items-center gap-2 group-hover:gap-4 transition-all duration-500 opacity-20 group-hover:opacity-100">
+                <div className="pt-6 md:pt-8 flex items-center justify-center md:justify-start gap-2 group-hover:gap-4 transition-all duration-500 opacity-20 group-hover:opacity-100">
                   <span className="text-[10px] font-bold tracking-[0.3em] uppercase group-hover:text-accent transition-colors">Saber más</span>
                   <div className="h-[1px] w-8 bg-accent" />
                 </div>

@@ -43,7 +43,7 @@ export const About = () => {
             </Reveal>
 
             <Reveal delay={0.8} width="100%">
-              <div className="flex flex-wrap justify-center gap-16 md:gap-32 pt-8">
+              <div className="flex flex-wrap justify-center gap-8 sm:gap-16 md:gap-32 pt-8">
                 <div className="text-center font-mona">
                   <h4 className="text-4xl md:text-5xl font-bold tracking-tighter text-accent text-glow-accent">100+</h4>
                   <p className="text-[9px] tracking-[0.3em] uppercase text-white/30 mt-2">Proyectos</p>

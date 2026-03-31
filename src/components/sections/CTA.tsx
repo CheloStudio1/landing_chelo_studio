@@ -28,7 +28,7 @@ export const CTA = () => {
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
             <a
               href="mailto:chelostudio.contact@gmail.com"
-              className="text-2xl md:text-4xl font-bold tracking-tighter border-b-2 border-accent pb-2 text-glow hover:text-accent transition-all"
+              className="text-base sm:text-lg md:text-4xl font-bold tracking-tighter border-b-2 border-accent pb-2 text-glow hover:text-accent transition-all break-all md:break-normal text-center"
             >
               CHELOSTUDIO.CONTACT@GMAIL.COM
             </a>
@@ -36,7 +36,7 @@ export const CTA = () => {
             <div className="hidden md:block w-px h-12 bg-white/20" />
 
             <button
-               className="px-12 py-6 bg-accent text-white font-black tracking-[0.2em] uppercase hover:bg-accent-hover transition-all hover:scale-105 shadow-[0_0_40px_rgba(32,26,255,0.3)] hover:shadow-[0_0_60px_rgba(32,26,255,0.5)]"
+               className="px-8 sm:px-12 py-4 sm:py-6 bg-accent text-white font-black tracking-[0.2em] text-sm md:text-base uppercase hover:bg-accent-hover transition-all hover:scale-105 shadow-[0_0_40px_rgba(32,26,255,0.3)] hover:shadow-[0_0_60px_rgba(32,26,255,0.5)] w-full sm:w-auto"
             >
               EMPEZAR AHORA
             </button>
